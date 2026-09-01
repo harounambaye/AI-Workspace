@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Workspace - Tableau de bord</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- En-tête -->
+    <header class="header">
+
+        <div class="logo">
+            AI Workspace
+        </div>
+
+        <div class="utilisateur">
+            <span>Admin User</span>
+            <span class="fleche">⌄</span>
+        </div>
+
+    </header>
+
+
+    <!-- Contenu principal de la page -->
+    <div class="conteneur">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="titre-sidebar">
+                AI Workspace
+            </div>
+
+            <!-- Menu -->
+            <nav class="menu">
+
+                <a href="#" class="lien actif">
+                    Tableau de bord
+                </a>
+
+                <a href="#" class="lien">
+                    Chat
+                </a>
+
+                <a href="#" class="lien">
+                    Résumé de texte
+                </a>
+
+                <a href="#" class="lien">
+                    Classification
+                </a>
+
+                <a href="#" class="lien">
+                    Traduction
+                </a>
+
+                <a href="#" class="lien">
+                    Historique
+                </a>
+
+            </nav>
+
+        </aside>
+
+
+        <!-- Contenu principal -->
+        <main class="contenu-principal">
+
+            <!-- Titre de la page -->
+            <section class="entete-page">
+
+                <h1>Tableau de bord</h1>
+
+                <p>
+                    Bienvenue sur votre espace de travail intelligent.
+                </p>
+
+            </section>
+
+
+            <!-- Cartes des statistiques -->
+            <section class="statistiques">
+
+                <div class="carte-statistique">
+
+                    <h3>Nombre de jeux de données</h3>
+
+                    <p class="nombre">24</p>
+
+                    <span class="augmentation bleu">
+                        +3 ce mois-ci
+                    </span>
+
+                </div>
+
+
+                <div class="carte-statistique">
+
+                    <h3>Nombre de requêtes</h3>
+
+                    <p class="nombre">1,256</p>
+
+                    <span class="augmentation vert">
+                        +18% ce mois-ci
+                    </span>
+
+                </div>
+
+
+                <div class="carte-statistique">
+
+                    <h3>Nombre de modèles disponibles</h3>
+
+                    <p class="nombre">12</p>
+
+                    <span class="augmentation violet">
+                        +2 ce mois-ci
+                    </span>
+
+                </div>
+
+
+                <div class="carte-statistique">
+
+                    <h3>Utilisateurs actifs</h3>
+
+                    <p class="nombre">8</p>
+
+                    <span class="augmentation orange">
+                        +2 ce mois-ci
+                    </span>
+
+                </div>
+
+
+                <div class="carte-statistique">
+
+                    <h3>Tâches exécutées</h3>
+
+                    <p class="nombre">342</p>
+
+                    <span class="augmentation bleu">
+                        +22% ce mois-ci
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- Graphiques -->
+            <section class="graphiques">
+
+                <!-- Premier graphique -->
+                <div class="carte-graphique">
+
+                    <div class="entete-carte">
+
+                        <h2>Requêtes par jour</h2>
+
+                        <select class="filtre">
+                            <option>7 derniers jours</option>
+                            <option>30 derniers jours</option>
+                            <option>90 derniers jours</option>
+                        </select>
+
+                    </div>
+
+                    <div class="zone-graphique">
+
+                        <img
+                            src="images/requetes-par-jour.png"
+                            alt="Graphique des requêtes par jour"
+                            class="image-graphique"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Deuxième graphique -->
+                <div class="carte-graphique">
+
+                    <div class="entete-carte">
+
+                        <h2>Répartition des requêtes par service</h2>
+
+                    </div>
+
+                    <div class="zone-graphique">
+
+                        <img
+                            src="images/repartition-services.png"
+                            alt="Graphique de répartition des requêtes par service"
+                            class="image-graphique"
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Tableaux -->
+            <section class="tableaux">
+
+
+                <!-- Activité récente -->
+                <div class="carte-tableau">
+
+                    <div class="entete-carte">
+
+                        <h2>Activité récente</h2>
+
+                    </div>
+
+
+                    <table class="tableau">
+
+                        <thead>
+
+                            <tr>
+                                <th>Activité</th>
+                                <th>Service</th>
+                                <th>Utilisateur</th>
+                                <th>Date</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <tr>
+                                <td>Résumé du document_projet.pdf</td>
+                                <td>Résumé de texte</td>
+                                <td>Admin User</td>
+                                <td>21/05/2024 14:32</td>
+                            </tr>
+
+                            <tr>
+                                <td>Classification de sentiments</td>
+                                <td>Classification</td>
+                                <td>Admin User</td>
+                                <td>21/05/2024 14:21</td>
+                            </tr>
+
+                            <tr>
+                                <td>Traduction FR → EN</td>
+                                <td>Traduction</td>
+                                <td>Admin User</td>
+                                <td>21/05/2024 14:15</td>
+                            </tr>
+
+                            <tr>
+                                <td>Discussion sur l'IA générative</td>
+                                <td>Chat</td>
+                                <td>Admin User</td>
+                                <td>21/05/2024 14:05</td>
+                            </tr>
+
+                            <tr>
+                                <td>Génération d'idées de projet</td>
+                                <td>Idées</td>
+                                <td>Admin User</td>
+                                <td>21/05/2024 13:50</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+
+                    <a href="#" class="lien-carte">
+                        Voir tout l'historique
+                    </a>
+
+                </div>
+
+
+                <!-- Modèles populaires -->
+                <div class="carte-tableau">
+
+                    <div class="entete-carte">
+
+                        <h2>Modèles populaires</h2>
+
+                    </div>
+
+
+                    <table class="tableau">
+
+                        <thead>
+
+                            <tr>
+                                <th>Modèle</th>
+                                <th>Utilisations</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <tr>
+                                <td>mistral-7b-instruct</td>
+                                <td>532</td>
+                            </tr>
+
+                            <tr>
+                                <td>gpt-4-turbo</td>
+                                <td>389</td>
+                            </tr>
+
+                            <tr>
+                                <td>llama-3-8b</td>
+                                <td>256</td>
+                            </tr>
+
+                            <tr>
+                                <td>bert-base-uncased</td>
+                                <td>179</td>
+                            </tr>
+
+                            <tr>
+                                <td>google-translate-v1</td>
+                                <td>142</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+
+                    <a href="#" class="lien-carte">
+                        Voir tous les modèles
+                    </a>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- Pied de page -->
+    <footer class="footer">
+
+        <p>
+            &copy; 2024 AI Workspace. Tous droits réservés.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
