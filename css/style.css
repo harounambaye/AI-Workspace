@@ -187,4 +187,381 @@ img
     7. CONTENU PRINCIPAL
     ========================================================= */
 
-    
+    .contenu-principal
+    {
+        margin-left: 220px;
+        width: calc(100% - 220px);
+        padding: 26px 28px 35px;
+    }
+
+    /* =========================================================
+   8. EN-TÊTE DE PAGE
+   ========================================================= */
+   
+   .entete-page
+   {
+    margin-bottom:22px;
+   }
+
+   .entete-page h1
+   {
+    font-size: 27px;
+    font-weight: 700;
+    color: #111827;
+    margin-top:4%;
+   }
+
+   .entete-page p
+   {
+    font-size: 14px;
+    color:#6b7280;
+   }
+
+   /* =========================================================
+   9. CARTES STATISTIQUES
+   ========================================================= */
+
+   .statistiques
+   {
+    display: grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+   }
+
+   .carte-statistique
+   {
+    background-color:#ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 21px 22px;
+    min-height: 130px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.003);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+   }
+
+   .carte-statistique:hover
+   {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+   }
+
+   .carte-statistique h3 
+   {
+    font-size: 12px;
+    font-weight: 600;
+
+    color: #374151;
+
+    margin-bottom: 9px;
+}
+
+.nombre 
+{
+    font-size: 30px;
+    font-weight: 600;
+
+    line-height: 1.1;
+
+    color: #111827;
+
+    margin-bottom: 9px;
+}
+
+.augmentation 
+{
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.augmentation.bleu 
+{
+    color: #3b82f6;
+}
+
+.augmentation.vert 
+{
+    color: #10b981;
+}
+
+.augmentation.violet 
+{
+    color: #8b5cf6;
+}
+
+.augmentation.orange 
+{
+    color: #f59e0b;
+}
+
+/* =========================================================
+   10. ZONE DES GRAPHIQUES
+   ========================================================= */
+
+.graphiques 
+{
+    display: grid;
+
+    grid-template-columns: 1.35fr 1fr;
+
+    gap: 14px;
+
+    margin-bottom: 18px;
+}
+
+.carte-graphique 
+{
+    background-color: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 8px;
+
+    min-height: 280px;
+
+    padding: 18px 20px;
+
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+/* =========================================================
+   11. EN-TÊTE DES CARTES
+   ========================================================= */
+
+.entete-carte 
+{
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+}
+
+.entete-carte h2 
+{
+    font-size: 15px;
+    font-weight: 600;
+
+    color: #1f2937;
+}
+
+/* =========================================================
+   12. FILTRE DU GRAPHIQUE
+   ========================================================= */
+
+.filtre 
+{
+    height: 32px;
+
+    padding: 0 28px 0 10px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 5px;
+
+    background-color: #ffffff;
+
+    color: #374151;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    outline: none;
+}
+
+.filtre:hover 
+{
+    border-color: #9ca3af;
+}
+
+.filtre:focus
+{
+    border-color: #3b82f6;
+
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+/* =========================================================
+   13. ZONE DES IMAGES GRAPHIQUES
+   ========================================================= */
+
+.zone-graphique 
+{
+    width: 100%;
+    height: 215px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.image-graphique 
+{
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+/* =========================================================
+   14. TABLEAUX
+   ========================================================= */
+
+.tableaux 
+{
+    display: grid;
+
+    grid-template-columns: 1.5fr 1fr;
+
+    gap: 14px;
+}
+
+.carte-tableau 
+{
+    background-color: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 8px;
+
+    padding: 18px 20px;
+
+    min-height: 290px;
+
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+
+    position: relative;
+}
+
+/* =========================================================
+   15. TABLE
+   ========================================================= */
+
+.tableau 
+{
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 12px;
+}
+
+.tableau thead 
+{
+    background-color: #ffffff;
+}
+
+.tableau th 
+{
+    text-align: left;
+
+    padding: 9px 6px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    color: #64748b;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.tableau td 
+{
+    padding: 10px 6px;
+
+    border-bottom: 1px solid #f1f5f9;
+
+    color: #374151;
+
+    white-space: nowrap;
+}
+
+.tableau tbody tr:last-child td 
+{
+    border-bottom: none;
+}
+
+.tableau tbody tr:hover 
+{
+    background-color: #f8fafc;
+}
+
+
+/* Alignement de la colonne Utilisations */
+
+.carte-tableau:last-child .tableau th:last-child,
+.carte-tableau:last-child .tableau td:last-child 
+{
+    text-align: right;
+}
+
+/* =========================================================
+   16. LIENS EN BAS DES CARTES
+   ========================================================= */
+
+.lien-carte 
+{
+    display: block;
+
+    width: fit-content;
+
+    margin: 12px 0 0 auto;
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    color: #2563eb;
+}
+
+.lien-carte:hover 
+{
+    text-decoration: underline;
+}
+
+/* =========================================================
+   17. FOOTER
+   ========================================================= */
+
+.footer 
+{
+    margin-left: 220px;
+
+    padding: 18px 28px;
+
+    border-top: 1px solid #e5e7eb;
+
+    background-color: #ffffff;
+
+    text-align: center;
+
+    color: #6b7280;
+
+    font-size: 12px;
+}
+
+/* =========================================================
+   18. BARRE DE DÉFILEMENT
+   ========================================================= */
+
+.sidebar::-webkit-scrollbar 
+{
+    width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-track 
+{
+    background: #f8fafc;
+}
+
+.sidebar::-webkit-scrollbar-thumb 
+{
+    background: #cbd5e1;
+    border-radius: 10px;
+}
