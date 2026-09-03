@@ -943,3 +943,170 @@ img
 {
     margin-bottom: 10px;
 }
+
+/******************* HISTORIQUE *******************/
+
+/* Zone principale de l'historique */
+.historique
+{
+    width: 100%;
+}
+
+
+/* Barre de recherche et bouton */
+.barre-historique
+{
+    display: flex;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+
+/* Champ de recherche */
+#recherche-historique
+{
+    flex: 1;
+
+    padding: 11px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    outline: none;
+
+    box-sizing: border-box;
+}
+
+
+/* Champ de recherche sélectionné */
+#recherche-historique:focus
+{
+    border-color: #2563eb;
+}
+
+
+/* Bouton vider */
+#bouton-vider
+{
+    padding: 10px 20px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: #dc2626;
+    color: white;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+/* Effet du bouton vider */
+#bouton-vider:hover
+{
+    background-color: #b91c1c;
+}
+
+
+/* Élément de l'historique */
+.element-historique
+{
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 18px;
+
+    margin-bottom: 12px;
+
+    background-color: white;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+}
+
+
+/* Informations */
+.information-historique
+{
+    flex: 1;
+}
+
+
+/* Type de requête */
+.information-historique h3
+{
+    margin-bottom: 8px;
+
+    font-size: 15px;
+
+    color: #2563eb;
+}
+
+
+/* Contenu de la requête */
+.information-historique p
+{
+    margin-bottom: 8px;
+
+    color: #374151;
+
+    font-size: 14px;
+}
+
+
+/* Date */
+.information-historique small
+{
+    color: #6b7280;
+
+    font-size: 12px;
+}
+
+
+/* Bouton supprimer */
+.bouton-supprimer
+{
+    padding: 8px 14px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: #ef4444;
+    color: white;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+
+/* Effet supprimer */
+.bouton-supprimer:hover
+{
+    background-color: #dc2626;
+}
+
+
+/* Aucun historique */
+.aucun-historique
+{
+    padding: 30px;
+
+    text-align: center;
+
+    background-color: #f8fafc;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+
+    color: #6b7280;
+}

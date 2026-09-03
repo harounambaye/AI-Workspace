@@ -55,10 +55,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
 
+
+            // Si on clique sur "Historique"
+            if (bouton.textContent.trim() === "Historique") {
+
+                afficherHistorique();
+
+            }
+
         });
 
     });
 
+
+    /******************* RESUME DE TEXTE *******************/
 
     // Fonction qui affiche la page Résumé de texte
     function afficherResume() {
@@ -114,13 +124,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // On récupère le bouton Résumer
-        let boutonResumer = document.querySelector("#bouton-resumer");
+        let boutonResumer =
+            document.querySelector("#bouton-resumer");
 
         // On récupère la zone de texte
-        let texte = document.querySelector("#texte");
+        let texte =
+            document.querySelector("#texte");
 
         // On récupère la zone du résultat
-        let resultat = document.querySelector("#resultat");
+        let resultat =
+            document.querySelector("#resultat");
 
 
         // Quand on clique sur Résumer
@@ -134,11 +147,20 @@ document.addEventListener("DOMContentLoaded", function () {
             if (texteUtilisateur.trim() === "") {
 
                 resultat.innerHTML = `
-                    <p>Veuillez entrer un texte.</p>
+                    <p>
+                        Veuillez entrer un texte.
+                    </p>
                 `;
 
                 return;
             }
+
+
+            // On enregistre la requête
+            enregistrerRequete(
+                "Résumé de texte",
+                texteUtilisateur
+            );
 
 
             // Résumé simulé
@@ -238,16 +260,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // On récupère la zone de texte
-        let texte = document.querySelector("#texte-traduction");
+        let texte =
+            document.querySelector("#texte-traduction");
 
         // On récupère le choix de la langue
-        let langue = document.querySelector("#langue");
+        let langue =
+            document.querySelector("#langue");
 
         // On récupère le bouton Traduire
-        let boutonTraduire = document.querySelector("#bouton-traduire");
+        let boutonTraduire =
+            document.querySelector("#bouton-traduire");
 
         // On récupère la zone de résultat
-        let traduction = document.querySelector("#traduction");
+        let traduction =
+            document.querySelector("#traduction");
 
 
         // Quand on clique sur Traduire
@@ -264,11 +290,20 @@ document.addEventListener("DOMContentLoaded", function () {
             if (texteUtilisateur.trim() === "") {
 
                 traduction.innerHTML = `
-                    <p>Veuillez entrer un texte.</p>
+                    <p>
+                        Veuillez entrer un texte.
+                    </p>
                 `;
 
                 return;
             }
+
+
+            // On enregistre la requête
+            enregistrerRequete(
+                "Traduction",
+                texteUtilisateur + " → " + langueChoisie
+            );
 
 
             // Traduction simulée
@@ -346,13 +381,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // On récupère la zone de texte
-        let message = document.querySelector("#message-chat");
+        let message =
+            document.querySelector("#message-chat");
 
         // On récupère le bouton Envoyer
-        let boutonEnvoyer = document.querySelector("#bouton-envoyer");
+        let boutonEnvoyer =
+            document.querySelector("#bouton-envoyer");
 
         // On récupère la zone de réponse
-        let reponse = document.querySelector("#reponse-chat");
+        let reponse =
+            document.querySelector("#reponse-chat");
 
 
         // Quand on clique sur Envoyer
@@ -373,6 +411,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 return;
             }
+
+
+            // On enregistre la requête
+            enregistrerRequete(
+                "Chat",
+                messageUtilisateur
+            );
 
 
             // Réponse simulée
@@ -412,7 +457,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 <h1>Prédiction</h1>
 
                 <p>
-                    Entrez vos informations pour obtenir une prédiction.
+                    Entrez vos informations pour obtenir
+                    une prédiction.
                 </p>
 
             </section>
@@ -485,16 +531,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // On récupère le champ âge
-        let age = document.querySelector("#age");
+        let age =
+            document.querySelector("#age");
 
         // On récupère le champ revenu
-        let revenu = document.querySelector("#revenu");
+        let revenu =
+            document.querySelector("#revenu");
 
         // On récupère le champ ville
-        let ville = document.querySelector("#ville");
+        let ville =
+            document.querySelector("#ville");
 
         // On récupère le bouton Prédire
-        let boutonPredire = document.querySelector("#bouton-predire");
+        let boutonPredire =
+            document.querySelector("#bouton-predire");
 
         // On récupère la zone de résultat
         let resultatPrediction =
@@ -506,7 +556,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // On récupère les valeurs saisies
             let ageUtilisateur = age.value;
+
             let revenuUtilisateur = revenu.value;
+
             let villeUtilisateur = ville.value;
 
 
@@ -525,6 +577,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 return;
             }
+
+
+            // On enregistre la requête
+            enregistrerRequete(
+                "Prédiction",
+                "Âge : " + ageUtilisateur +
+                ", Revenu : " + revenuUtilisateur +
+                ", Ville : " + villeUtilisateur
+            );
 
 
             // Prédiction fictive
@@ -557,6 +618,272 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
 
         });
+
+    }
+
+
+    /******************* HISTORIQUE *******************/
+
+    // Fonction qui enregistre une requête
+    function enregistrerRequete(type, contenuRequete) {
+
+        // On récupère l'historique existant
+        let historique =
+            JSON.parse(localStorage.getItem("historique")) || [];
+
+
+        // On crée une nouvelle requête
+        let nouvelleRequete = {
+
+            id: Date.now(),
+
+            type: type,
+
+            contenu: contenuRequete,
+
+            date: new Date().toLocaleString()
+
+        };
+
+
+        // On ajoute la requête à l'historique
+        historique.push(nouvelleRequete);
+
+
+        // On sauvegarde l'historique
+        localStorage.setItem(
+            "historique",
+            JSON.stringify(historique)
+        );
+
+    }
+
+
+    /******************* AFFICHER HISTORIQUE *******************/
+
+    // Fonction qui affiche la page Historique
+    function afficherHistorique() {
+
+        contenu.innerHTML = `
+
+            <section class="entete-page">
+
+                <h1>Historique</h1>
+
+                <p>
+                    Consultez et gérez vos requêtes précédentes.
+                </p>
+
+            </section>
+
+
+            <section class="historique">
+
+                <div class="barre-historique">
+
+                    <input
+                        type="text"
+                        id="recherche-historique"
+                        placeholder="Rechercher une requête..."
+                    >
+
+                    <button id="bouton-vider">
+                        Vider l'historique
+                    </button>
+
+                </div>
+
+
+                <div id="liste-historique">
+
+                </div>
+
+            </section>
+
+        `;
+
+
+        // On récupère la zone de recherche
+        let recherche =
+            document.querySelector("#recherche-historique");
+
+        // On récupère le bouton Vider
+        let boutonVider =
+            document.querySelector("#bouton-vider");
+
+        // On récupère la liste
+        let liste =
+            document.querySelector("#liste-historique");
+
+
+        // Fonction qui affiche les requêtes
+        function afficherListe() {
+
+            // On récupère l'historique
+            let historique =
+                JSON.parse(
+                    localStorage.getItem("historique")
+                ) || [];
+
+
+            // On récupère le texte recherché
+            let texteRecherche =
+                recherche.value.toLowerCase();
+
+
+            // On filtre les requêtes
+            let historiqueFiltre =
+                historique.filter(function (requete) {
+
+                    return (
+                        requete.type
+                            .toLowerCase()
+                            .includes(texteRecherche)
+                        ||
+                        requete.contenu
+                            .toLowerCase()
+                            .includes(texteRecherche)
+                    );
+
+                });
+
+
+            // Si aucune requête n'existe
+            if (historiqueFiltre.length === 0) {
+
+                liste.innerHTML = `
+                    <div class="aucun-historique">
+
+                        <p>
+                            Aucune requête trouvée.
+                        </p>
+
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            // On vide la liste
+            liste.innerHTML = "";
+
+
+            // On parcourt l'historique
+            historiqueFiltre.forEach(function (requete) {
+
+                liste.innerHTML += `
+
+                    <div class="element-historique">
+
+                        <div class="information-historique">
+
+                            <h3>
+                                ${requete.type}
+                            </h3>
+
+                            <p>
+                                ${requete.contenu}
+                            </p>
+
+                            <small>
+                                ${requete.date}
+                            </small>
+
+                        </div>
+
+
+                        <button
+                            class="bouton-supprimer"
+                            data-id="${requete.id}"
+                        >
+                            Supprimer
+                        </button>
+
+                    </div>
+
+                `;
+
+            });
+
+
+            // On récupère les boutons Supprimer
+            let boutonsSupprimer =
+                document.querySelectorAll(
+                    ".bouton-supprimer"
+                );
+
+
+            // On parcourt les boutons
+            boutonsSupprimer.forEach(function (bouton) {
+
+                bouton.addEventListener(
+                    "click",
+                    function () {
+
+                        supprimerRequete(
+                            bouton.dataset.id
+                        );
+
+                        afficherListe();
+
+                    }
+                );
+
+            });
+
+        }
+
+
+        // Quand on écrit dans la recherche
+        recherche.addEventListener("input", function () {
+
+            afficherListe();
+
+        });
+
+
+        // Quand on clique sur Vider
+        boutonVider.addEventListener("click", function () {
+
+            localStorage.removeItem("historique");
+
+            afficherListe();
+
+        });
+
+
+        // Affichage initial
+        afficherListe();
+
+    }
+
+
+    /******************* SUPPRIMER UNE REQUETE *******************/
+
+    // Fonction qui supprime une requête
+    function supprimerRequete(id) {
+
+        // On récupère l'historique
+        let historique =
+            JSON.parse(
+                localStorage.getItem("historique")
+            ) || [];
+
+
+        // On filtre l'historique
+        historique = historique.filter(function (requete) {
+
+            return requete.id != id;
+
+        });
+
+
+        // On sauvegarde le nouvel historique
+        localStorage.setItem(
+            "historique",
+            JSON.stringify(historique)
+        );
 
     }
 
