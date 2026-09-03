@@ -47,6 +47,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
 
+
+            // Si on clique sur "Prédiction"
+            if (bouton.textContent.trim() === "Prédiction") {
+
+                afficherPrediction();
+
+            }
+
         });
 
     });
@@ -385,6 +393,167 @@ document.addEventListener("DOMContentLoaded", function () {
                     Merci pour votre message.
                     Ceci est une réponse simulée de l'assistant IA.
                 </p>
+            `;
+
+        });
+
+    }
+
+
+    /******************* PREDICTION *******************/
+
+    // Fonction qui affiche la page Prédiction
+    function afficherPrediction() {
+
+        contenu.innerHTML = `
+
+            <section class="entete-page">
+
+                <h1>Prédiction</h1>
+
+                <p>
+                    Entrez vos informations pour obtenir une prédiction.
+                </p>
+
+            </section>
+
+
+            <section class="resume">
+
+                <div class="carte-resume">
+
+                    <h2>Informations</h2>
+
+
+                    <label for="age">
+                        Âge
+                    </label>
+
+                    <input
+                        type="number"
+                        id="age"
+                        placeholder="Entrez votre âge"
+                    >
+
+
+                    <label for="revenu">
+                        Revenu
+                    </label>
+
+                    <input
+                        type="number"
+                        id="revenu"
+                        placeholder="Entrez votre revenu"
+                    >
+
+
+                    <label for="ville">
+                        Ville
+                    </label>
+
+                    <input
+                        type="text"
+                        id="ville"
+                        placeholder="Entrez votre ville"
+                    >
+
+
+                    <button id="bouton-predire">
+                        Prédire
+                    </button>
+
+                </div>
+
+
+                <div class="carte-resume">
+
+                    <h2>Résultat</h2>
+
+                    <div id="resultat-prediction">
+
+                        <p>
+                            La prédiction apparaîtra ici.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        `;
+
+
+        // On récupère le champ âge
+        let age = document.querySelector("#age");
+
+        // On récupère le champ revenu
+        let revenu = document.querySelector("#revenu");
+
+        // On récupère le champ ville
+        let ville = document.querySelector("#ville");
+
+        // On récupère le bouton Prédire
+        let boutonPredire = document.querySelector("#bouton-predire");
+
+        // On récupère la zone de résultat
+        let resultatPrediction =
+            document.querySelector("#resultat-prediction");
+
+
+        // Quand on clique sur Prédire
+        boutonPredire.addEventListener("click", function () {
+
+            // On récupère les valeurs saisies
+            let ageUtilisateur = age.value;
+            let revenuUtilisateur = revenu.value;
+            let villeUtilisateur = ville.value;
+
+
+            // On vérifie si un champ est vide
+            if (
+                ageUtilisateur.trim() === "" ||
+                revenuUtilisateur.trim() === "" ||
+                villeUtilisateur.trim() === ""
+            ) {
+
+                resultatPrediction.innerHTML = `
+                    <p>
+                        Veuillez remplir tous les champs.
+                    </p>
+                `;
+
+                return;
+            }
+
+
+            // Prédiction fictive
+            resultatPrediction.innerHTML = `
+
+                <p>
+                    <strong>Prédiction :</strong>
+                </p>
+
+                <p>
+                    Profil considéré comme favorable.
+                </p>
+
+                <p>
+                    Âge : ${ageUtilisateur} ans
+                </p>
+
+                <p>
+                    Revenu : ${revenuUtilisateur}
+                </p>
+
+                <p>
+                    Ville : ${villeUtilisateur}
+                </p>
+
+                <p>
+                    Cette prédiction est fictive.
+                </p>
+
             `;
 
         });
