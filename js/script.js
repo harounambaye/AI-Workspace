@@ -39,6 +39,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
 
+
+            // Si on clique sur "Chat"
+            if (bouton.textContent.trim() === "Chat") {
+
+                afficherChat();
+
+            }
+
         });
 
     });
@@ -265,6 +273,117 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 <p>
                     This is a simulated translation of your text.
+                </p>
+            `;
+
+        });
+
+    }
+
+
+    /******************* CHAT IA *******************/
+
+    // Fonction qui affiche la page Chat IA
+    function afficherChat() {
+
+        contenu.innerHTML = `
+
+            <section class="entete-page">
+
+                <h1>Chat IA</h1>
+
+                <p>
+                    Discutez avec votre assistant intelligent.
+                </p>
+
+            </section>
+
+
+            <section class="resume">
+
+                <div class="carte-resume">
+
+                    <h2>Votre message</h2>
+
+                    <textarea
+                        id="message-chat"
+                        placeholder="Écrivez votre message ici..."
+                    ></textarea>
+
+
+                    <button id="bouton-envoyer">
+                        Envoyer
+                    </button>
+
+                </div>
+
+
+                <div class="carte-resume">
+
+                    <h2>Réponse de l'IA</h2>
+
+                    <div id="reponse-chat">
+
+                        <p>
+                            La réponse apparaîtra ici.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        `;
+
+
+        // On récupère la zone de texte
+        let message = document.querySelector("#message-chat");
+
+        // On récupère le bouton Envoyer
+        let boutonEnvoyer = document.querySelector("#bouton-envoyer");
+
+        // On récupère la zone de réponse
+        let reponse = document.querySelector("#reponse-chat");
+
+
+        // Quand on clique sur Envoyer
+        boutonEnvoyer.addEventListener("click", function () {
+
+            // On récupère le message écrit par l'utilisateur
+            let messageUtilisateur = message.value;
+
+
+            // On vérifie si le message est vide
+            if (messageUtilisateur.trim() === "") {
+
+                reponse.innerHTML = `
+                    <p>
+                        Veuillez écrire un message.
+                    </p>
+                `;
+
+                return;
+            }
+
+
+            // Réponse simulée
+            reponse.innerHTML = `
+                <p>
+                    <strong>Vous :</strong>
+                </p>
+
+                <p>
+                    ${messageUtilisateur}
+                </p>
+
+                <p>
+                    <strong>IA :</strong>
+                </p>
+
+                <p>
+                    Merci pour votre message.
+                    Ceci est une réponse simulée de l'assistant IA.
                 </p>
             `;
 

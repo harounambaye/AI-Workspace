@@ -755,3 +755,95 @@ img
 
     outline: none;
 }
+
+/******************* CHAT IA *******************/
+
+/* Zone du chat */
+#message-chat
+{
+    width: 100%;
+    height: 250px;
+
+    padding: 15px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+
+    resize: vertical;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+
+    outline: none;
+
+    box-sizing: border-box;
+}
+
+
+/* Zone de texte quand on clique dessus */
+#message-chat:focus
+{
+    border-color: #2563eb;
+}
+
+
+/* Bouton Envoyer */
+#bouton-envoyer
+{
+    margin-top: 15px;
+
+    padding: 10px 20px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: #2563eb;
+    color: white;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+/* Effet quand on passe la souris */
+#bouton-envoyer:hover
+{
+    background-color: #1d4ed8;
+}
+
+
+/* Zone de réponse de l'IA */
+#reponse-chat
+{
+    min-height: 250px;
+
+    padding: 15px;
+
+    background-color: #f8fafc;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+
+    color: #374151;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    box-sizing: border-box;
+}
+
+
+/* Texte dans la réponse */
+#reponse-chat p
+{
+    margin-bottom: 10px;
+}
+
+
+/* Titres des cartes du chat */
+.carte-resume h2
+{
+    margin-bottom: 15px;
+}
