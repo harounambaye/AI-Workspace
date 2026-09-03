@@ -646,3 +646,112 @@ img
     font-size: 14px;
 }
 
+/* =========================================================
+   TRADUCTION
+   ========================================================= */
+
+   /******************* TRADUCTION *******************/
+
+/* Choix de la langue */
+
+#langue {
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 10px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 6px;
+
+    background-color: white;
+
+    font-size: 14px;
+
+    color: #374151;
+}
+
+
+/* Bouton Traduire */
+
+#bouton-traduire {
+    margin-top: 12px;
+
+    padding: 10px 20px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background-color: #2563eb;
+
+    color: white;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+/* Quand on passe la souris sur le bouton */
+
+#bouton-traduire:hover {
+    background-color: #1d4ed8;
+}
+
+
+/* Zone où la traduction apparaît */
+
+#traduction {
+    min-height: 250px;
+
+    padding: 15px;
+
+    background-color: #f8fafc;
+
+    border-radius: 6px;
+
+    color: #374151;
+
+    font-size: 14px;
+}
+
+
+/* Zone de texte de traduction */
+
+#texte-traduction {
+    width: 100%;
+
+    height: 250px;
+
+    padding: 12px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 6px;
+
+    resize: vertical;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+
+/* Quand on clique dans la zone de texte */
+
+#texte-traduction:focus {
+    border-color: #2563eb;
+}
+
+
+/* Quand on clique sur le choix de langue */
+
+#langue:focus {
+    border-color: #2563eb;
+
+    outline: none;
+}
