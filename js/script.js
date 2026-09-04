@@ -1,6 +1,25 @@
-/******************* RESUME DE TEXTE *******************/
+/******************* CONFIGURATION GROQ *******************/
 
-// On attend que la page soit complètement chargée
+// BONUS désactivé par défaut
+let bonusActive = false;
+
+// Clé API Groq
+// IMPORTANT : Je met temporairement ma clé ici pour les tests.
+// Je ne dois pas pousser la vraie clé sur GitHub.
+// Avant le git push, je supprime la clé et laisse cette ligne vide.
+const GROQ_API_KEY = "";
+
+// API officielle Groq
+const GROQ_API_URL =
+    "https://api.groq.com/openai/v1/chat/completions";
+
+// Modèle Groq utilisé
+const GROQ_MODEL =
+    "openai/gpt-oss-120b";
+
+
+/******************* CHARGEMENT DE LA PAGE *******************/
+
 document.addEventListener("DOMContentLoaded", function () {
 
     // On récupère les boutons du menu
@@ -9,6 +28,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // On récupère la zone principale
     let contenu = document.querySelector(".contenu-principal");
 
+    // On récupère le contenu initial du tableau de bord
+    let contenuTableauDeBord = contenu.innerHTML;
+
+
+    /******************* GESTION DES BOUTONS DU MENU *******************/
 
     // On parcourt les boutons
     boutons.forEach(function (bouton) {
@@ -24,7 +48,15 @@ document.addEventListener("DOMContentLoaded", function () {
             bouton.classList.add("actif");
 
 
-            // Si on clique sur "Résumé de texte"
+            // Tableau de bord
+            if (bouton.textContent.trim() === "Tableau de bord") {
+
+                afficherTableauDeBord();
+
+            }
+
+
+            // Résumé de texte
             if (bouton.textContent.trim() === "Résumé de texte") {
 
                 afficherResume();
@@ -32,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
-            // Si on clique sur "Traduction"
+            // Traduction
             if (bouton.textContent.trim() === "Traduction") {
 
                 afficherTraduction();
@@ -40,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
-            // Si on clique sur "Chat"
+            // Chat
             if (bouton.textContent.trim() === "Chat") {
 
                 afficherChat();
@@ -48,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
-            // Si on clique sur "Prédiction"
+            // Prédiction
             if (bouton.textContent.trim() === "Prédiction") {
 
                 afficherPrediction();
@@ -56,10 +88,18 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
-            // Si on clique sur "Historique"
+            // Historique
             if (bouton.textContent.trim() === "Historique") {
 
                 afficherHistorique();
+
+            }
+
+
+            // Bonus
+            if (bouton.textContent.trim() === "Bonus") {
+
+                afficherBonus();
 
             }
 
@@ -68,9 +108,227 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
+    /******************* TABLEAU DE BORD *******************/
+
+    function afficherTableauDeBord() {
+
+        // On remet le HTML original du tableau de bord
+        contenu.innerHTML = contenuTableauDeBord;
+
+    }
+
+
+    /******************* BONUS *******************/
+
+    function afficherBonus() {
+
+        // On inverse l'état du bonus
+        bonusActive = !bonusActive;
+
+
+        // Si le bonus est activé
+        if (bonusActive) {
+
+            contenu.innerHTML = `
+
+                <section class="entete-page">
+
+                    <h1>Bonus activé</h1>
+
+                    <p>
+                        Les fonctionnalités IA utilisent maintenant
+                        l'API Groq.
+                    </p>
+
+                </section>
+
+
+                <section class="resume">
+
+                    <div class="carte-resume">
+
+                        <h2>Bonus activé</h2>
+
+                        <p>
+                            Le mode Bonus permet de connecter
+                            directement votre application à
+                            l'intelligence artificielle Groq.
+                        </p>
+
+                        <p>
+                            Les fonctionnalités suivantes utilisent
+                            maintenant une vraie API :
+                        </p>
+
+                        <ul>
+
+                            <li>Chat IA</li>
+
+                            <li>Résumé de texte</li>
+
+                            <li>Traduction</li>
+
+                            <li>Prédiction</li>
+
+                        </ul>
+
+                        <p>
+                            Cliquez à nouveau sur le bouton Bonus
+                            pour revenir au mode simulation.
+                        </p>
+
+                    </div>
+
+                </section>
+
+            `;
+
+        }
+
+
+        // Si le bonus est désactivé
+        else {
+
+            contenu.innerHTML = `
+
+                <section class="entete-page">
+
+                    <h1>Bonus désactivé</h1>
+
+                    <p>
+                        Les fonctionnalités utilisent maintenant
+                        les simulations locales.
+                    </p>
+
+                </section>
+
+
+                <section class="resume">
+
+                    <div class="carte-resume">
+
+                        <h2>Mode simulation</h2>
+
+                        <p>
+                            Le mode Bonus est désactivé.
+                        </p>
+
+                        <p>
+                            Chat, Résumé, Traduction et Prédiction
+                            utilisent leurs réponses simulées.
+                        </p>
+
+                    </div>
+
+                </section>
+
+            `;
+
+        }
+
+    }
+
+
+    /******************* APPEL API GROQ *******************/
+
+    async function appelerGroq(instructions, texteUtilisateur) {
+
+        // Vérification de la présence de la clé
+        if (GROQ_API_KEY.trim() === "") {
+
+            throw new Error(
+                "La clé API Groq est vide."
+            );
+
+        }
+
+
+        // Appel de l'API Groq
+        let reponse = await fetch(
+            GROQ_API_URL,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + GROQ_API_KEY
+                },
+
+                body: JSON.stringify({
+
+                    model: GROQ_MODEL,
+
+                    messages: [
+
+                        {
+                            role: "system",
+                            content: instructions
+                        },
+
+                        {
+                            role: "user",
+                            content: texteUtilisateur
+                        }
+
+                    ],
+
+                    temperature: 0.7,
+
+                    max_tokens: 1000
+
+                })
+
+            }
+        );
+
+
+        // On récupère toujours le contenu de la réponse
+        let donnees = await reponse.json();
+
+
+        // Si Groq retourne une erreur
+        if (!reponse.ok) {
+
+            console.error(
+                "Erreur API Groq :",
+                donnees
+            );
+
+
+            // On récupère le message d'erreur de Groq
+            let messageErreur =
+                donnees.error?.message ||
+                "Erreur inconnue de l'API Groq";
+
+
+            throw new Error(
+                "Groq : " + messageErreur
+            );
+
+        }
+
+
+        // Vérification de la réponse
+        if (
+            !donnees.choices ||
+            donnees.choices.length === 0
+        ) {
+
+            throw new Error(
+                "Groq n'a retourné aucune réponse."
+            );
+
+        }
+
+
+        // Retourne la réponse de l'IA
+        return donnees.choices[0].message.content;
+
+    }
+
+
     /******************* RESUME DE TEXTE *******************/
 
-    // Fonction qui affiche la page Résumé de texte
     function afficherResume() {
 
         contenu.innerHTML = `
@@ -137,9 +395,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // Quand on clique sur Résumer
-        boutonResumer.addEventListener("click", function () {
+        boutonResumer.addEventListener("click", async function () {
 
-            // On récupère le texte écrit par l'utilisateur
+            // On récupère le texte écrit
             let texteUtilisateur = texte.value;
 
 
@@ -153,6 +411,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
 
                 return;
+
             }
 
 
@@ -163,8 +422,97 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-            // Résumé simulé
+            /******************* MODE BONUS *******************/
+
+            if (bonusActive) {
+
+                resultat.innerHTML = `
+
+                    <p>
+                        <strong>
+                            Résumé avec Groq...
+                        </strong>
+                    </p>
+
+                    <p>
+                        Veuillez patienter.
+                    </p>
+
+                `;
+
+
+                try {
+
+                    let resume = await appelerGroq(
+
+                        `Tu es un assistant spécialisé dans
+                        le résumé de texte.
+
+                        Résume le texte fourni en français.
+
+                        Le résumé doit être clair, court et fidèle
+                        au contenu original.
+
+                        Ne donne aucune information qui n'est pas
+                        présente dans le texte.`,
+
+                        texteUtilisateur
+
+                    );
+
+
+                    resultat.innerHTML = `
+
+                        <p>
+                            <strong>
+                                Résumé généré par Groq :
+                            </strong>
+                        </p>
+
+                        <p>
+                            ${formaterTexte(resume)}
+                        </p>
+
+                    `;
+
+                }
+
+
+                catch (erreur) {
+
+                    console.error(erreur);
+
+                    resultat.innerHTML = `
+
+                        <p>
+                            <strong>
+                                Erreur Groq
+                            </strong>
+                        </p>
+
+                        <p>
+                            Impossible de contacter l'API Groq.
+                        </p>
+
+                        <p>
+                            Vérifiez votre clé API et votre connexion
+                            Internet.
+                        </p>
+
+                    `;
+
+                }
+
+
+                return;
+
+            }
+
+
+            /******************* MODE SIMULATION *******************/
+
             resultat.innerHTML = `
+
                 <p>
                     <strong>Résumé simulé :</strong>
                 </p>
@@ -175,6 +523,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     importantes et permet de comprendre rapidement
                     le contenu.
                 </p>
+
             `;
 
         });
@@ -184,7 +533,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /********************** TRADUCTION **********************/
 
-    // Fonction qui affiche la page Traduction
     function afficherTraduction() {
 
         contenu.innerHTML = `
@@ -277,7 +625,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // Quand on clique sur Traduire
-        boutonTraduire.addEventListener("click", function () {
+        boutonTraduire.addEventListener("click", async function () {
 
             // On récupère le texte écrit
             let texteUtilisateur = texte.value;
@@ -296,6 +644,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
 
                 return;
+
             }
 
 
@@ -306,8 +655,91 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-            // Traduction simulée
+            /******************* MODE BONUS *******************/
+
+            if (bonusActive) {
+
+                traduction.innerHTML = `
+
+                    <p>
+                        <strong>
+                            Traduction avec Groq...
+                        </strong>
+                    </p>
+
+                    <p>
+                        Veuillez patienter.
+                    </p>
+
+                `;
+
+
+                try {
+
+                    let traductionGroq = await appelerGroq(
+
+                        `Tu es un traducteur professionnel.
+
+                        Traduis le texte fourni vers la langue
+                        demandée.
+
+                        Langue demandée : ${langueChoisie}.
+
+                        Retourne uniquement la traduction.
+                        Ne donne aucune explication supplémentaire.`,
+
+                        texteUtilisateur
+
+                    );
+
+
+                    traduction.innerHTML = `
+
+                        <p>
+                            <strong>
+                                Traduction générée par Groq :
+                            </strong>
+                        </p>
+
+                        <p>
+                            ${formaterTexte(traductionGroq)}
+                        </p>
+
+                    `;
+
+                }
+
+
+                catch (erreur) {
+
+                    console.error(erreur);
+
+                    traduction.innerHTML = `
+
+                        <p>
+                            <strong>
+                                Erreur Groq
+                            </strong>
+                        </p>
+
+                        <p>
+                            Impossible de contacter l'API Groq.
+                        </p>
+
+                    `;
+
+                }
+
+
+                return;
+
+            }
+
+
+            /******************* MODE SIMULATION *******************/
+
             traduction.innerHTML = `
+
                 <p>
                     <strong>
                         Traduction simulée en ${langueChoisie} :
@@ -317,6 +749,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <p>
                     This is a simulated translation of your text.
                 </p>
+
             `;
 
         });
@@ -326,7 +759,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /******************* CHAT IA *******************/
 
-    // Fonction qui affiche la page Chat IA
     function afficherChat() {
 
         contenu.innerHTML = `
@@ -394,9 +826,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // Quand on clique sur Envoyer
-        boutonEnvoyer.addEventListener("click", function () {
+        boutonEnvoyer.addEventListener("click", async function () {
 
-            // On récupère le message écrit par l'utilisateur
+            // On récupère le message écrit
             let messageUtilisateur = message.value;
 
 
@@ -410,6 +842,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
 
                 return;
+
             }
 
 
@@ -420,14 +853,111 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-            // Réponse simulée
+            /******************* MODE BONUS *******************/
+
+            if (bonusActive) {
+
+                reponse.innerHTML = `
+
+                    <p>
+                        <strong>
+                            Groq réfléchit...
+                        </strong>
+                    </p>
+
+                    <p>
+                        Veuillez patienter.
+                    </p>
+
+                `;
+
+
+                try {
+
+                    let reponseGroq = await appelerGroq(
+
+                        `Tu es un assistant intelligent intégré
+                        dans une application appelée AI Workspace.
+
+                        Réponds à l'utilisateur de manière claire,
+                        naturelle et utile.
+
+                        Réponds en français sauf si l'utilisateur
+                        demande une autre langue.`,
+
+                        messageUtilisateur
+
+                    );
+
+
+                    reponse.innerHTML = `
+
+                        <p>
+                            <strong>
+                                Vous :
+                            </strong>
+                        </p>
+
+                        <p>
+                            ${formaterTexte(messageUtilisateur)}
+                        </p>
+
+                        <p>
+                            <strong>
+                                IA - Groq :
+                            </strong>
+                        </p>
+
+                        <p>
+                            ${formaterTexte(reponseGroq)}
+                        </p>
+
+                    `;
+
+                }
+
+
+                catch (erreur) {
+
+                    console.error(erreur);
+
+                    reponse.innerHTML = `
+
+                        <p>
+                            <strong>
+                                Erreur Groq
+                            </strong>
+                        </p>
+
+                        <p>
+                            Impossible de contacter l'API Groq.
+                        </p>
+
+                        <p>
+                            Vérifiez votre clé API et votre connexion
+                            Internet.
+                        </p>
+
+                    `;
+
+                }
+
+
+                return;
+
+            }
+
+
+            /******************* MODE SIMULATION *******************/
+
             reponse.innerHTML = `
+
                 <p>
                     <strong>Vous :</strong>
                 </p>
 
                 <p>
-                    ${messageUtilisateur}
+                    ${formaterTexte(messageUtilisateur)}
                 </p>
 
                 <p>
@@ -438,6 +968,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     Merci pour votre message.
                     Ceci est une réponse simulée de l'assistant IA.
                 </p>
+
             `;
 
         });
@@ -447,7 +978,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /******************* PREDICTION *******************/
 
-    // Fonction qui affiche la page Prédiction
     function afficherPrediction() {
 
         contenu.innerHTML = `
@@ -552,7 +1082,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // Quand on clique sur Prédire
-        boutonPredire.addEventListener("click", function () {
+        boutonPredire.addEventListener("click", async function () {
 
             // On récupère les valeurs saisies
             let ageUtilisateur = age.value;
@@ -576,6 +1106,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
 
                 return;
+
             }
 
 
@@ -588,7 +1119,125 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-            // Prédiction fictive
+            /******************* MODE BONUS *******************/
+
+            if (bonusActive) {
+
+                resultatPrediction.innerHTML = `
+
+                    <p>
+                        <strong>
+                            Analyse avec Groq...
+                        </strong>
+                    </p>
+
+                    <p>
+                        Veuillez patienter.
+                    </p>
+
+                `;
+
+
+                try {
+
+                    let informations =
+                        "Âge : " + ageUtilisateur +
+                        "\nRevenu : " + revenuUtilisateur +
+                        "\nVille : " + villeUtilisateur;
+
+
+                    let predictionGroq = await appelerGroq(
+
+                        `Tu es un assistant spécialisé dans
+                        l'analyse et l'aide à la décision.
+
+                        Analyse les informations fournies.
+
+                        Donne une appréciation simple du profil
+                        sous la forme :
+
+                        - Profil favorable
+                        - Profil moyen
+                        - Profil défavorable
+
+                        Explique brièvement la raison de ton
+                        appréciation.
+
+                        Attention :
+                        il s'agit d'une démonstration pédagogique.
+                        Ne présente pas ton résultat comme une
+                        décision réelle ou certaine.`,
+
+                        informations
+
+                    );
+
+
+                    resultatPrediction.innerHTML = `
+
+                        <p>
+                            <strong>
+                                Analyse générée par Groq :
+                            </strong>
+                        </p>
+
+                        <p>
+                            ${formaterTexte(predictionGroq)}
+                        </p>
+
+                        <hr>
+
+                        <p>
+                            <strong>
+                                Données fournies :
+                            </strong>
+                        </p>
+
+                        <p>
+                            Âge : ${ageUtilisateur} ans
+                        </p>
+
+                        <p>
+                            Revenu : ${revenuUtilisateur}
+                        </p>
+
+                        <p>
+                            Ville : ${formaterTexte(villeUtilisateur)}
+                        </p>
+
+                    `;
+
+                }
+
+
+                catch (erreur) {
+
+                    console.error(erreur);
+
+                    resultatPrediction.innerHTML = `
+
+                        <p>
+                            <strong>
+                                Erreur Groq
+                            </strong>
+                        </p>
+
+                        <p>
+                            Impossible de contacter l'API Groq.
+                        </p>
+
+                    `;
+
+                }
+
+
+                return;
+
+            }
+
+
+            /******************* MODE SIMULATION *******************/
+
             resultatPrediction.innerHTML = `
 
                 <p>
@@ -608,7 +1257,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </p>
 
                 <p>
-                    Ville : ${villeUtilisateur}
+                    Ville : ${formaterTexte(villeUtilisateur)}
                 </p>
 
                 <p>
@@ -624,7 +1273,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /******************* HISTORIQUE *******************/
 
-    // Fonction qui enregistre une requête
     function enregistrerRequete(type, contenuRequete) {
 
         // On récupère l'historique existant
@@ -661,7 +1309,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /******************* AFFICHER HISTORIQUE *******************/
 
-    // Fonction qui affiche la page Historique
     function afficherHistorique() {
 
         contenu.innerHTML = `
@@ -762,6 +1409,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
 
                 return;
+
             }
 
 
@@ -779,15 +1427,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="information-historique">
 
                             <h3>
-                                ${requete.type}
+                                ${formaterTexte(requete.type)}
                             </h3>
 
                             <p>
-                                ${requete.contenu}
+                                ${formaterTexte(requete.contenu)}
                             </p>
 
                             <small>
-                                ${requete.date}
+                                ${formaterTexte(requete.date)}
                             </small>
 
                         </div>
@@ -861,7 +1509,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /******************* SUPPRIMER UNE REQUETE *******************/
 
-    // Fonction qui supprime une requête
     function supprimerRequete(id) {
 
         // On récupère l'historique
@@ -886,5 +1533,29 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
     }
+
+
+    /******************* SECURITE AFFICHAGE HTML *******************/
+
+    // Cette fonction évite qu'un texte utilisateur
+    // soit directement interprété comme du HTML.
+    function formaterTexte(texte) {
+
+        return String(texte)
+
+            .replace(/&/g, "&amp;")
+
+            .replace(/</g, "&lt;")
+
+            .replace(/>/g, "&gt;")
+
+            .replace(/"/g, "&quot;")
+
+            .replace(/'/g, "&#039;")
+
+            .replace(/\n/g, "<br>");
+
+    }
+
 
 });

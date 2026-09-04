@@ -1109,4 +1109,150 @@ img
     border-radius: 8px;
 
     color: #6b7280;
+
 }
+
+```css
+/******************* BONUS *******************/
+
+/* Section principale du bonus */
+.resume {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+
+/* Carte du bonus */
+.carte-resume {
+    padding: 25px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+
+/* Titre de la carte */
+.carte-resume h2 {
+    margin-bottom: 15px;
+    color: #2563eb;
+    font-size: 20px;
+}
+
+
+/* Paragraphes */
+.carte-resume p {
+    margin-bottom: 15px;
+    color: #374151;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* Liste des fonctionnalités */
+.carte-resume ul {
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+
+.carte-resume li {
+    margin-bottom: 10px;
+    color: #374151;
+    font-size: 14px;
+}
+
+
+/* Mise en évidence des fonctionnalités */
+.carte-resume li::marker {
+    color: #2563eb;
+}
+
+
+/******************* INDICATEUR BONUS *******************/
+
+/* Lorsque le bonus est activé */
+.bonus-actif {
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    color: #1d4ed8;
+    font-size: 14px;
+}
+
+
+/* Lorsque le bonus est désactivé */
+.bonus-inactif {
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+/******************* BOUTON BONUS *******************/
+
+#bouton-bonus {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #2563eb;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+#bouton-bonus:hover {
+    background-color: #1d4ed8;
+}
+
+
+/******************* REPONSE GROQ *******************/
+
+.reponse-groq {
+    min-height: 200px;
+    padding: 15px;
+    background-color: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    color: #374151;
+    font-size: 14px;
+    line-height: 1.6;
+    box-sizing: border-box;
+}
+
+
+/******************* MESSAGE DE CHARGEMENT *******************/
+
+.chargement-groq {
+    padding: 15px;
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    color: #2563eb;
+    font-size: 14px;
+}
+
+
+/******************* MESSAGE ERREUR GROQ *******************/
+
+.erreur-groq {
+    padding: 15px;
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    color: #dc2626;
+    font-size: 14px;
+    line-height: 1.5;
+}
+```
+
+
